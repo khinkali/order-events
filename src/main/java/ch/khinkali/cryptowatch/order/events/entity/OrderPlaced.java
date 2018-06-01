@@ -4,12 +4,11 @@ import ch.khinkali.cryptowatch.events.entity.BaseEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 
 @AllArgsConstructor
 @Getter
-public class OrderPlaced implements BaseEvent {
+public class OrderPlaced extends BaseEvent {
     public static final String TOPIC = "coins";
 
     public enum JSON_KEYS {
@@ -38,7 +37,7 @@ public class OrderPlaced implements BaseEvent {
 
     @Override
     public JsonObject getJson() {
-        return Json.createObjectBuilder()
+        return getJsonBuilder()
                 .add(JSON_KEYS.ORDER_ID.getJsonKey(), orderId)
                 .add(JSON_KEYS.COIN_SYMBOL.getJsonKey(), coinSymbol)
                 .add(JSON_KEYS.AMOUNT.getJsonKey(), amount)
